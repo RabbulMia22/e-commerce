@@ -10,15 +10,17 @@ function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className=" shadow-md fixed w-full top-0 left-0 z-50">
+    <nav className="bg-white shadow-md fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-indigo-600 cursor-pointer">
-          ShopMate
+          <span className="text-2xl font-bold text-gray-900">
+                Stylish<span className="text-[#F05252]">Threads</span>
+              </span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6 text-white font-medium">
+        <div className="hidden md:flex items-center space-x-6 text-gray-700 font-medium">
           <Link href="/" className="hover:text-indigo-600 transition">Home</Link>
           <Link href="/shop" className="hover:text-indigo-600 transition">Shop</Link>
           <Link href="/categories" className="hover:text-indigo-600 transition">Categories</Link>
@@ -37,7 +39,7 @@ function Navbar() {
             <Search className="absolute right-2 top-1.5 text-gray-400" size={18} />
           </div>
           <div className="relative cursor-pointer">
-            <ShoppingCart size={24} />
+            <ShoppingCart className="text-black" size={24} />
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                 {cartCount}
@@ -47,14 +49,19 @@ function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        <div className="md:hidden ">
           <button onClick={toggleMenu}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            {isOpen ? <X className="text-black" size={28} /> : <Menu className="text-black" size={28} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
+       <div
+        className={`md:hidden bg-white overflow-hidden transition-all duration-500 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-100"
+        }`}
+      >
       {isOpen && (
         <div className="md:hidden bg-white shadow-md">
           <ul className="space-y-4 px-6 py-4 text-gray-700 font-medium">
@@ -74,8 +81,8 @@ function Navbar() {
               </div>
             </li>
             <li>
-              <div className="relative mt-2 cursor-pointer">
-                <ShoppingCart size={24} />
+              <div className="relative mt-2  cursor-pointer">
+                <ShoppingCart className="text-black" size={24} />
                 {cartCount > 0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                     {cartCount}
@@ -86,6 +93,7 @@ function Navbar() {
           </ul>
         </div>
       )}
+      </div>
     </nav>
   );
 }
